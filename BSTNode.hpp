@@ -128,7 +128,7 @@ BSTNode<T, less, equal> *BSTNode<T, less, equal>::successor() {
 
     BSTNode<T, less, equal> *aux_parent = parent;
     BSTNode<T, less, equal> *aux_this = this;
-    while (aux_parent && aux_this == aux_parent->hijo_derecho) {
+    while (aux_parent && aux_this == aux_parent->right) {
         aux_this = aux_parent;
         aux_parent = aux_this->parent;
     }
