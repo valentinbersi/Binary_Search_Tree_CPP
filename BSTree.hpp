@@ -38,23 +38,23 @@ public:
 
     // Pre: -
     // Post: returns true if the element is in the tree. If there are no elements, it returns false.
-    bool find(T element);
+    [[nodiscard]] bool find(T element);
 
     // Pre: -
     // Post: returns the inorder traversal.
-    std::vector<T> inorder();
+    [[nodiscard]] std::vector<T> inorder();
 
     // Pre: -
     // Post: returns the preorder traversal.
-    std::vector<T> preorder();
+    [[nodiscard]] std::vector<T> preorder();
 
     // Pre: -
     // Post: returns the postorder traversal.
-    std::vector<T> postorder();
+    [[nodiscard]] std::vector<T> postorder();
 
     // Pre: -
     // Post: returns the width order traversal.
-    std::vector<T> width_order();
+    [[nodiscard]] std::vector<T> width_order();
 
     // Pre: -
     // Post: executes the method/function in each node.
@@ -62,15 +62,15 @@ public:
 
     // Pre: -
     // Post: returns the number of elements in the tree.
-    std::size_t size();
+    [[nodiscard]] std::size_t size();
 
     // Pre: ~
     // Pos: returns the height of the tree, if the tree is empty it returns 0.
-    std::size_t height();
+    [[nodiscard]] std::size_t height();
 
     // Pre: -
     // Post: returns true if the tree is empty.
-    bool empty();
+    [[nodiscard]] bool empty();
 
     // Destructor.
     ~BSTree();
@@ -83,24 +83,24 @@ BSTree<T, less, equal>::BSTree() {
 }
 
 template<typename T, bool (*less)(T, T), bool (*equal)(T, T)>
-BSTree<T, less, equal>::BSTree(const BSTree &tree) {
+BSTree<T, less, equal>::BSTree(const BSTree<T, less, equal> &tree) {
     root = nullptr;
     _size = 0;
 
-    std::vector<T> elements = tree.inorder();
+    std::vector<T> elements = tree.width_order();
     for (T &element: elements) {
         add(element);
     }
 }
 
 template<typename T, bool (*less)(T, T), bool (*equal)(T, T)>
-BSTree<T, less, equal> &BSTree<T, less, equal>::operator=(const BSTree &tree) {
+BSTree<T, less, equal> &BSTree<T, less, equal>::operator=(const BSTree<T, less, equal> &tree) {
     BSTree<T, less, equal> aux(tree);
 
     root = nullptr;
     _size = 0;
 
-    std::vector<T> elements = tree.inorder();
+    std::vector<T> elements = aux.width_order();
     for (T &element: elements) {
         add(element);
     }
@@ -112,7 +112,12 @@ template<typename T, bool (*less)(T, T), bool (*equal)(T, T)>
 void BSTree<T, less, equal>::add(T new_element) {
     if (find(new_element)) throw FrequencyException();
 
-    empty() ? (root = new BSTNode<T, less, equal>(new_element)) : root->add(new_element);
+    if (empty()) {
+        root = new BSTNode<T, less, equal>(new_element);
+
+    } else {
+        root->add(new_element);
+    }
 
     _size++;
 }

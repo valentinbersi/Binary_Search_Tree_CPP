@@ -20,19 +20,19 @@ private:
 
     // Pre: ~
     // Pos: returns the number of children a node has
-    size_t number_of_children();
+    [[nodiscard]] size_t number_of_children();
 
     // Pre: ~
     // Pos: returns the minimun node of the subtree
-    BSTNode<T, less, equal> *minimum();
+    [[nodiscard]] BSTNode<T, less, equal> *minimum();
 
     // Pre: ~
     // Pos: returns the successor of a node
-    BSTNode<T, less, equal> *successor();
+    [[nodiscard]] BSTNode<T, less, equal> *successor();
 
     // Pre: ~
     // Pos: returns true if the node is the left child of its parent
-    bool is_left_child();
+    [[nodiscard]] bool is_left_child();
 
     // Pre: the node is a leaf
     // Pos: disconnects the parent of the node from its corresponding child
@@ -77,7 +77,7 @@ public:
 
     // Pre: ~
     // Post: returns true if the element is in the subtree.
-    bool find(T element);
+    [[nodiscard]] bool find(T element);
 
     // Pre: ~
     // Post: loads in elements the elements of the subtree in inorder.
@@ -101,7 +101,7 @@ public:
 
     // Pre: ~
     // Pos: returns the height of the subtree.
-    size_t height();
+    [[nodiscard]] size_t height();
 
     // Destructor.
     ~BSTNode();
