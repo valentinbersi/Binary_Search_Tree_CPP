@@ -112,7 +112,7 @@ template<typename T, bool (*less)(T, T), bool (*equal)(T, T)>
 void BSTree<T, less, equal>::add(T new_element) {
     if (find(new_element)) throw FrequencyException();
 
-    empty() ? root = new BSTNode<T, less, equal>(new_element) : root->add(new_element);
+    empty() ? (root = new BSTNode<T, less, equal>(new_element)) : root->add(new_element);
 
     _size++;
 }
