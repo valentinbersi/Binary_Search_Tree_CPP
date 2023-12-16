@@ -25,4 +25,4 @@ Manual:
 
 - empty(): returns true if the tree is empty.
 
-  The tree doesn´t accept repeated elements, (or repeated ids for an element if you are using an ADT). If add() is called with a repeated element or id, it will end the execution of the program throwing an exception.
+The tree doesn´t accept repeated elements, (or repeated ids for an element if you are using an ADT). If add() is called with a repeated element or id, it will end the execution of the program throwing an exception.
