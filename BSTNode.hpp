@@ -302,7 +302,7 @@ bool BSTNode<T, less, equal>::find(T element_to_find) {
         return false;
     }
 
-    if (right) return right->consulta(element_to_find);
+    if (right) return right->find(element_to_find);
 
     return false;
 }
